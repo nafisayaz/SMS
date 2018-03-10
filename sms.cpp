@@ -8,11 +8,9 @@
 
 using namespace std;
 
-
-// encoding converts characters that are not allowed in a URL into character-entity equivalent
 string encode(string url)
 {
-	char *hex = "0123456789abcdef";
+	const char *hex = "0123456789abcdef";
 	stringstream s;
 
 	for(unsigned int i = 0; i < url.length(); i++)
@@ -34,18 +32,20 @@ string encode(string url)
 
 
 
+
 int main(int argc, char** argv)
 {
+
 	string host       = "localhost";     
-	int port          = 9502;
+	int port          = 9501;
 
 	string username   = "admin";         
 	string password   = "abc123";
 
 	string message    = "This is a test SMS."; 
 
-	string originator = "+44555555555";    
-	string recipient  = "+44333333333";    
+	string originator = "+919966320464";    
+	string recipient  = "+919620354720";    
 
 	stringstream url;					 
 	url << "/api?action=sendmessage&username=" << encode(username);
@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 
 	HINTERNET conn = InternetConnect(inet, host.c_str() , port, NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
 
-	HINTERNET sess = HttpOpenRequest(conn, "GET", url.str().c_str(), "HTTP/1.1", NULL, NULL, INTERNET_FLAG_PRAGMA_NOCACHE | INTERNET_FLAG_RELOAD, 0);
+	HINTERNET sess=HttpOpenRequest(conn,"GET",url.str().c_str(),"HTTP/1.1",NULL,NULL, INTERNET_FLAG_PRAGMA_NOCACHE | INTERNET_FLAG_RELOAD,0);
 
 	int error = GetLastError();
 	if(error == NO_ERROR)
@@ -79,6 +79,8 @@ int main(int argc, char** argv)
 		else cout << "Error." << endl;
 	}
 
-	system("pause");
+//	system("pause");
+
+
 }
 
