@@ -6,7 +6,7 @@
         {
             "label": "Buld_sms_program",
             "type": "shell",
-            "command": "i586-mingw32msvc-g++ sms.cpp -lwininet -o sms.exe ",
+            "command" : "make",
             "group": {
                 "kind": "build",
                 "isDefault": true
